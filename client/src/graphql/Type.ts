@@ -1,0 +1,1 @@
+export type SortField = "Title" | "Date" | "Operator";

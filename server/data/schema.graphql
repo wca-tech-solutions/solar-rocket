@@ -5,6 +5,8 @@ type Query {
 
 type Mutation {
   createMission(mission: MissionInput): Mission
+  deleteMission(id: ID!): Mission
+  updateMission(id: ID!, mission: MissionInput): Mission
 }
 
 input MissionInput {
@@ -30,7 +32,7 @@ input LocationInput {
 input OrbitInput {
   periapsis: Int!
   apoapsis: Int!
-  inclination: Int!
+  inclination: Float!
 }
 
 input PayloadInput {
@@ -46,6 +48,7 @@ input MissionSortOptions {
 enum MissionSortFields {
   Title
   Date
+  Operator
 }
 
 type Mission {
@@ -72,7 +75,7 @@ type Location {
 type Orbit {
   periapsis: Int!
   apoapsis: Int!
-  inclination: Int!
+  inclination: Float!
 }
 
 type Payload {

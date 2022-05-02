@@ -1,3 +1,4 @@
+import cors from 'cors';
 import express, { Express, Request, Response } from "express";
 import dotenv from "dotenv";
 import { graphqlHTTP } from "express-graphql";
@@ -21,7 +22,7 @@ const app: Express = express();
 const port = process.env.PORT || 5000;
 
 let schema: GraphQLSchema;
-
+app.use(cors());
 app
   .listen(port, () => console.log(`Listening on port ${port}`))
   .on("error", (err) => {
@@ -81,7 +82,6 @@ const main = async () => {
       Mutation: {
         async createMission(obj, args) {
           const missions = await loadMissions();
-
           const mission = CreateMission(args.mission);
           missions.push(mission);
 
@@ -92,13 +92,50 @@ const main = async () => {
           );
           return mission;
         },
+        // delete a mission
+        async deleteMission(obj, args) {
+          const missions = await loadMissions();
+          // get the mission to delete by id
+          const mission = missions.find((m) => m.id === args.id);
+          if (!mission) return null;
+
+          missions.splice(missions.indexOf(mission), 1);
+
+          await writeFile(
+            path.join(DATA_DIR, DATA_FILE_MISSIONS),
+            JSON.stringify(missions),
+            "utf8"
+          );
+          return mission;
+        },
+        // update a mission
+        async updateMission(obj, args) {
+          const missions = await loadMissions();
+          // get the mission to update by id
+          const mission = missions.find((m) => m.id === args.id);
+          if (!mission) return null;
+
+          // update the mission
+          mission.title = args.mission.title;
+          mission.operator = args.mission.operator;
+          mission.launch = args.mission.launch;
+          mission.orbit = args.mission.orbit;
+          mission.payload = args.mission.payload;
+
+          await writeFile(
+            path.join(DATA_DIR, DATA_FILE_MISSIONS),
+            JSON.stringify(missions),
+            "utf8"
+          );
+          return mission;
+        }
       },
     },
   });
 
-  app.get("/readme", 
-    async (req : Request, res: Response ) => {
-      const readme : String = await readFile(path.join(__dirname, "../../README.md"), "utf8")
+  app.get("/readme",
+    async (req: Request, res: Response) => {
+      const readme: String = await readFile(path.join(__dirname, "../../README.md"), "utf8")
       res.send(readme);
     }
   );
