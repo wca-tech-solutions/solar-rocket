@@ -56,7 +56,7 @@ const WeatherRoot = (): JSX.Element => {
                         <Grid container sx={{
 
                         }}>
-                            <Grid item xs={4} >
+                            <Grid item xs={12} md={4} >
                                 <Card sx={{
                                     borderRadius: 5,
                                     height: "100%",
@@ -92,7 +92,7 @@ const WeatherRoot = (): JSX.Element => {
                                 </Card>
 
                             </Grid>
-                            <Grid item xs={8} container
+                            <Grid item xs={12} md={8} container
                                 sx={{
                                     paddingY: 1,
                                     paddingX: 2,
