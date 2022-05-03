@@ -84,8 +84,7 @@ const Missions = (): JSX.Element => {
   const [newMissionOpen, setNewMissionOpen] = useState(false);
   const [editMissionOpen, setEditMissionOpen] = useState(false);
   const [missionToEdit, setMissionToEdit] = useState<Mission | null>(null);
-
-  const [sortDesc, setSortDesc] = useState<boolean>(true);
+  const [sortDesc, setSortDesc] = useState<boolean>(false);
   const [sortField, setSortField] = useState<SortField>("Title");
   const [errMessage, setErrMessage] = useState<String | null>(null);
 
