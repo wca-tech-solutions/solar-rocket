@@ -78,7 +78,7 @@ const WeatherRoot = (): JSX.Element => {
                                             margin: "auto",
                                         }}
                                         component="img"
-                                        image={weather?.current?.condition?.icon}
+                                        image={weather.current.condition.icon}
                                     />
 
                                     <CardContent>
@@ -86,7 +86,7 @@ const WeatherRoot = (): JSX.Element => {
                                             {weather.current.condition.text}
                                         </Typography>
                                         <Typography variant="body2" color="text.secondary">
-                                            {weather?.location?.name} {weather?.location?.region} {weather?.location?.country}
+                                            {weather.location.name} {weather.location.region} {weather.location.country}
                                         </Typography>
                                     </CardContent>
                                 </Card>
