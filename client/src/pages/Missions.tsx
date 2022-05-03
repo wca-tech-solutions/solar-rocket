@@ -29,6 +29,7 @@ import {
   ArrowUpward as ArrowUpwardIcon,
   Delete,
   Edit,
+  RocketLaunch,
 } from "@mui/icons-material";
 
 import { ListMenu } from "../components/ListMenu";
@@ -195,13 +196,21 @@ const Missions = (): JSX.Element => {
             {" "}
             {missions.map((mission: Mission, key: number) => (
               <Grid item key={key}>
-                <Card sx={{ width: 275, height: 200 }}>
+                <Card sx={{ minWidth: 300, minHeight: 200 }}>
                   <CardHeader
-                    title={mission.title}
+                    title={
+                      <Typography
+                        variant="h5"
+                      ><RocketLaunch color="primary" sx={{marginRight:1}}></RocketLaunch>{mission.title}</Typography>
+                    }
                     subheader={new Date(mission.launch.date).toDateString()}
                   />
                   <CardContent>
-                    <Typography noWrap>{mission.operator}</Typography>
+                    <Typography noWrap>Operator: {mission.operator}</Typography>
+                    <Typography noWrap>Vehicle: {mission.launch.vehicle}</Typography>
+
+                    <Typography variant="caption" noWrap>Payload: {`${mission.payload.available}/${mission.payload.capacity}`}</Typography>
+
                   </CardContent>
                   <CardActions>
                     <Button
