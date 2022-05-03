@@ -179,79 +179,36 @@ const WeatherRoot = (): JSX.Element => {
                                     justifyContent="space-evenly"
                                     alignItems="center"
                                 >
-                                    <Grid
-                                        item
-                                        sx={{
-                                            borderRadius: 2
-                                        }}
-                                    >
-                                        <CardActionArea
-                                            onClick={() => setSelectedForecast(weather.forecast.forecastday[0])}
-                                            sx={{
-                                                borderRadius: 2,
-                                                padding: 2
-                                            }}>
-                                            <Avatar
+                                    {
+                                        weather.forecast.forecastday.map((forecast: any, index: number) =>
+                                            <Grid
+                                                key={index}
+                                                item
                                                 sx={{
-                                                    width: 50,
+                                                    borderRadius: 2
                                                 }}
-                                                src={weather?.forecast.forecastday[0].day.condition.icon}
-                                            ></Avatar>
-                                            <Typography>{weather?.forecast.forecastday[0].day.avgtemp_c}°C</Typography>
-                                            <Typography variant="caption">{moment(weather?.forecast.forecastday[0].date).format('ll')}</Typography>
-                                        </CardActionArea>
-                                    </Grid>
-                                    <Grid
-                                        item
-                                        sx={{
-                                        }}
-                                    >
-                                        <CardActionArea
-                                            onClick={() => setSelectedForecast(weather.forecast.forecastday[1])}
-                                            sx={{
-                                                borderRadius: 2,
-                                                padding: 2,
-                                            }}
-                                        >
-                                            <Avatar
-                                                sx={{
-                                                    width: 50,
-                                                }}
-                                                src={weather?.forecast.forecastday[1].day.condition.icon}
-                                            ></Avatar>
-                                            <Typography>{weather?.forecast.forecastday[1].day.avgtemp_c}°C</Typography>
-                                            <Typography variant="caption">{moment(weather?.forecast.forecastday[1].date).format('ll')}</Typography>
-                                        </CardActionArea>
-                                    </Grid>
-                                    <Grid
-                                        item
-                                        sx={{
-                                        }}
-                                    >
-                                        <CardActionArea
-                                            onClick={() => setSelectedForecast(weather.forecast.forecastday[2])}
-                                            sx={{
-                                                borderRadius: 2,
-                                                padding: 2,
-                                            }}
-                                        >
-                                            <Avatar
-                                                sx={{
-                                                    width: 50,
-                                                }}
-                                                src={weather?.forecast.forecastday[2].day.condition.icon}
-                                            ></Avatar>
-                                            <Typography>{weather?.forecast.forecastday[2].day.avgtemp_c}°C</Typography>
-                                            <Typography variant="caption">{moment(weather?.forecast.forecastday[2].date).format('ll')}</Typography>
-
-                                        </CardActionArea>
-                                    </Grid>
+                                            >
+                                                <CardActionArea
+                                                    onClick={() => setSelectedForecast(forecast)}
+                                                    sx={{
+                                                        borderRadius: 2,
+                                                        padding: 2
+                                                    }}>
+                                                    <Avatar
+                                                        sx={{
+                                                            width: 50,
+                                                        }}
+                                                        src={forecast.day.condition.icon}
+                                                    ></Avatar>
+                                                    <Typography>{forecast.day.avgtemp_c}°C</Typography>
+                                                    <Typography variant="caption">{moment(forecast.date).format('ll')}</Typography>
+                                                </CardActionArea>
+                                            </Grid>
+                                        )
+                                    }
                                 </Grid>
                             </Grid>
-
                         </Grid>
-
-
                     </Paper>
                     : <Box sx={{ textAlign: "center" }}>
                         <CircularProgress />
