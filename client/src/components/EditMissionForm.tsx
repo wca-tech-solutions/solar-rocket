@@ -109,19 +109,19 @@ const EditMissionForm: FC<Props> = (props): JSX.Element => {
     });
 
     useEffect(() => {
-        if (mission) {
+        if (mission && mission.launch && mission.launch.location && mission.orbit && mission.payload) {
             setspaceMissionTitle(spaceMissionTitle => ({ ...spaceMissionTitle, value: mission.title }));
             setspaceMissionOperator(spaceMissionOperator => ({ ...spaceMissionOperator, value: mission.operator }));
             setTempLaunchDate(tempLaunchDate => ({ ...tempLaunchDate, value: new Date(mission.launch?.date) || null }));
             setspaceMissionVehicle(spaceMissionVehicle => ({ ...spaceMissionVehicle, value: mission.launch?.vehicle || "" }));
-            setspaceMissionLocationName(spaceMissionLocationName => ({ ...spaceMissionLocationName, value: mission.launch?.location?.name || "" }));
-            setspaceMissionLocationLongitude(spaceMissionLocationLongitude => ({ ...spaceMissionLocationLongitude, longitude: mission.launch?.location?.longitude || 0 }));
-            setspaceMissionLocationLatitude(spaceMissionLocationLatitude => ({ ...spaceMissionLocationLatitude, latitude: mission.launch?.location?.latitude || 0 }));
-            setspaceMissionOrbitPeriapsis(spaceMissionOrbitPeriapsis => ({ ...spaceMissionOrbitPeriapsis, periapsis: mission.orbit?.periapsis || 0 }));
-            setspaceMissionOrbitApoapsis(spaceMissionOrbitApoapsis => ({ ...spaceMissionOrbitApoapsis, apoapsis: mission.orbit?.apoapsis || 0 }));
-            setspaceMissionOrbitInclination(spaceMissionOrbitInclination => ({ ...spaceMissionOrbitInclination, inclination: mission.orbit?.inclination || 0 }));
-            setspaceMissionPayloadCapacity(spaceMissionPayloadCapacity => ({ ...spaceMissionPayloadCapacity, capacity: mission.payload?.capacity || 0 }));
-            setspaceMissionPayloadAvailable(spaceMissionPayloadAvailable => ({ ...spaceMissionPayloadAvailable, available: mission.payload?.available || 0 }));
+            setspaceMissionLocationName(spaceMissionLocationName => ({ ...spaceMissionLocationName, value: mission.launch.location.name || "" }));
+            setspaceMissionLocationLongitude(spaceMissionLocationLongitude => ({ ...spaceMissionLocationLongitude, longitude: mission.launch.location.longitude || 0 }));
+            setspaceMissionLocationLatitude(spaceMissionLocationLatitude => ({ ...spaceMissionLocationLatitude, latitude: mission.launch.location.latitude || 0 }));
+            setspaceMissionOrbitPeriapsis(spaceMissionOrbitPeriapsis => ({ ...spaceMissionOrbitPeriapsis, periapsis: mission.orbit.periapsis || 0 }));
+            setspaceMissionOrbitApoapsis(spaceMissionOrbitApoapsis => ({ ...spaceMissionOrbitApoapsis, apoapsis: mission.orbit.apoapsis || 0 }));
+            setspaceMissionOrbitInclination(spaceMissionOrbitInclination => ({ ...spaceMissionOrbitInclination, inclination: mission.orbit.inclination || 0 }));
+            setspaceMissionPayloadCapacity(spaceMissionPayloadCapacity => ({ ...spaceMissionPayloadCapacity, capacity: mission.payload.capacity || 0 }));
+            setspaceMissionPayloadAvailable(spaceMissionPayloadAvailable => ({ ...spaceMissionPayloadAvailable, available: mission.payload.available || 0 }));
         }
     }, [mission, setspaceMissionTitle, setspaceMissionOperator, setTempLaunchDate, setspaceMissionVehicle, setspaceMissionLocationName, setspaceMissionLocationLongitude, setspaceMissionLocationLatitude, setspaceMissionOrbitPeriapsis, setspaceMissionOrbitApoapsis, setspaceMissionOrbitInclination, setspaceMissionPayloadCapacity, setspaceMissionPayloadAvailable]);
 
